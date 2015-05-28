@@ -276,29 +276,23 @@ angular.module('MassAutoComplete', [])
               $scope.$apply();
               break;
 
-            // Navigate the menu when it's open. When it's not open fall back
-            // to default behavior.
             case KEYS.TAB:
               if (!$scope.show_autocomplete)
                 break;
 
-              // Accept a selection only if results exist, the menu is
-              // displayed and the results are valid (no current request
-              // for new suggestions is active).
+              // TAB Using ENTER key behavior
               if ($scope.show_autocomplete &&
                   $scope.selected_index > 0 &&
                   !$scope.waiting_for_suggestion) {
                 $scope.apply_selection($scope.selected_index);
-                // When selecting an item from the AC list the focus is set on
-                // the input element. So the enter will cause a keypress event
-                // on the input itself. Since this enter is not intended for the
-                // input but for the AC result we prevent propagation to parent
-                // elements because this event is not of their concern. We cannot
-                // prevent events from firing when the event was registered on
-                // the input itself.
+
                 e.stopPropagation();
                 e.preventDefault();
               }
+
+              $scope.show_autocomplete = false;
+              $scope.$apply();
+              break;
 
             // Open the menu when results exists but are not displayed. Or,
             // select the next element when the menu is open. When reaching
