@@ -298,6 +298,7 @@ angular.module('MassAutoComplete', [])
                 // the input itself.
                 e.stopPropagation();
                 e.preventDefault();
+              }
 
             // Open the menu when results exists but are not displayed. Or,
             // select the next element when the menu is open. When reaching
